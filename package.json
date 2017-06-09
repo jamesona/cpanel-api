@@ -1,0 +1,15 @@
+{
+  "name": "cpanel-api",
+  "description": "A Node.js REST client for cPanel",
+  "main": "js/test.js",
+  "private": true,
+  "version": "0.2.0-alpha",
+  "dependencies": {
+    "typescript": ">= 2.2",
+    "request": "latest",
+	"qs": "latest"
+  },
+  "scripts": {
+	  "debug": "tsc && node --inspect --debug-brk js/test.js"
+  }
+}
