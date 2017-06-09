@@ -17,7 +17,7 @@ export class Email extends cPanelModule implements Email {
 	add_pop(profile: Profile, options, callback: Callback): void {
 		if (!options.quota) options.quota = 0
 		this.getActionSlug(profile, {
-			version: 'UAPI', module: 'Email', func: 'addpop'
+			version: 'UAPI', module: 'Email', func: 'add_pop'
 		}, (err, action) => {
 			this.call(profile, {
 				params: options,

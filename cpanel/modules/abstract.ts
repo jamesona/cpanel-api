@@ -22,11 +22,10 @@ export abstract class cPanelModule {
 			data.form = params
 			data.uri = res + action
 			request.get(data, (err, res) => {
-				if (err) return callback(new Error(err), null)
+				if (err) return callback(new Error(err), res)
 				try {
 					let body = JSON.parse(res.body)
-					if (!!body.cpanelresult)
-						callback(err, body.cpanelresult)
+					callback(err, body)
 				} catch(e) {
 					callback(err, res)
 				}
