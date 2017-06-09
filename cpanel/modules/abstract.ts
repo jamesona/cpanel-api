@@ -46,7 +46,7 @@ export abstract class cPanelModule {
 		})
 	}
 
-	protected getActionSlug(profile, options: {version: 2 | 'UAPI', func: string, module: string}, callback: Callback): void {
+	protected getActionSlug(profile, options: {version: 2 | 'UAPI' | 'WHM', func: string, module: string}, callback: Callback): void {
 		let { version, module, func } = options
 		switch (version) {
 			case 2: {
@@ -57,6 +57,10 @@ export abstract class cPanelModule {
 			}
 			case 'UAPI': {
 				let action = ':2083/execute/' + module + '/' + func + '?'
+				return callback(null, action)
+			}
+			case 'WHM': {
+				let action = ':2087/json-api/' + func + '?api.version=1'
 				return callback(null, action)
 			}
 		}

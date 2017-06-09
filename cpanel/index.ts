@@ -2,10 +2,11 @@ import * as Modules from './modules'
 import { cPanelModule } from './modules/abstract'
 
 export interface Profile {
-	host: string,
-	user: string,
-	pass: string,
+	host: string
+	user: string
+	pass: string
 	primary?: string
+	root?: Profile
 }
 
 export class cPanel {
