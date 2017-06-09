@@ -9,15 +9,16 @@ export type ModuleMethod = (profile: any, options: any, callback: Callback) => v
 export abstract class cPanelModule {
 	protected call(profile: Profile, options: {params: object,  action: string}, callback: Callback): void {
 		let { params, action } = options
+		let port = action.split('/').shift()
+		action = action.slice(5)
 		let data = {
-			baseUrl: 'https://' + profile.host + ':2083/',
+			baseUrl: 'https://' + profile.host + port,
 			uri: '',
 			headers: {
 				'Authorization': 'Basic ' + new Buffer(profile.user + ':' + profile.pass).toString('base64')
 			},
 			form: {}
 		}
-
 		this.getAuthToken(profile, data, (err, res) => {
 			data.form = params
 			data.uri = res + action
@@ -49,13 +50,13 @@ export abstract class cPanelModule {
 		let { version, module, func } = options
 		switch (version) {
 			case 2: {
-				let action = '/json-api/cpanel?cpanel_jsonapi_user=' + profile.user +
+				let action = ':2083/json-api/cpanel?cpanel_jsonapi_user=' + profile.user +
 					'&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_module=' + module +
 					'&cpanel_jsonapi_func=' + func
 				return callback(null, action)
 			}
 			case 'UAPI': {
-				let action = '/execute/' + module + '/' + func + '?'
+				let action = ':2083/execute/' + module + '/' + func + '?'
 				return callback(null, action)
 			}
 		}
