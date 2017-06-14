@@ -22,13 +22,15 @@ export abstract class cPanelModule {
 		this.getAuthToken(profile, data, (err, res) => {
 			data.form = params
 			data.uri = res + action
-			request.get(data, (err, res) => {
-				if (err) return callback(new Error(err), res)
+			request.get(data, (err, response) => {
+				if (err) return callback(new Error(err), response)
+				const res = response.toJSON()
+				if (res.statusCode !== 200) return callback(new Error(res.body), response)
 				try {
-					let body = JSON.parse(res.body)
-					callback(err, body)
+					const body = JSON.parse(res.body)
+					return callback(err, body)
 				} catch(e) {
-					callback(err, res)
+					return callback(new TypeError('Response was not JSON'), res)
 				}
 			})
 		})

@@ -22,7 +22,15 @@ export class Email extends cPanelModule implements Email {
 			this.call(profile, {
 				params: options,
 				action: action
-			}, callback)
+			}, (err, res) => {
+				if (err) return callback(err, res)
+				if (res.errors)
+					return callback(new Error(res.errors), res)
+				if (res.status && res.status !== 1)
+					return callback(new Error(res.data), res)
+				else
+					return callback(null, res.data)
+			})
 		})
 	}
 

@@ -9,7 +9,17 @@ export class WHM extends cPanelModule {
 			this.call(profile, {
 				params: options,
 				action: action
-			}, callback)
+			}, (err, res) => {
+				if (err) return callback(err, res)
+				if (res.metadata) {
+					const meta = res.metadata
+					if (meta.result === 1)
+						return callback(null, meta.reason)
+					return callback(new Error(meta.reason), res)
+				}
+				else
+					return callback(new TypeError('Received unhandled server response.'), res)
+			})
 		})
 	}
 }

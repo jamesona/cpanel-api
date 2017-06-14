@@ -9,7 +9,11 @@ export class AddonDomain extends cPanelModule implements AddonDomain {
 			this.call(profile, {
 				params: options,
 				action: action
-			}, callback)
+			}, (err, res) => {
+				debugger
+
+				callback(err, res)
+			})
 		})
 	}
 }
