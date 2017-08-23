@@ -38,7 +38,19 @@ export class Email extends cPanelModule implements Email {
 	add_mx(profile: Profile, options, callback: Callback): void {
 		options.alwaysaccept = options.alwaysaccept || 1
 		this.getActionSlug(profile, {
-			version: 'UAPI', module: 'Email', func: 'addpop'
+			version: 'UAPI', module: 'Email', func: 'add_mx'
+		}, (err, action) => {
+			this.call(profile, {
+				params: options,
+				action: action
+			}, callback)
+		})
+	}
+
+	add_forwarder(profile: Profile, options, callback: Callback): void {
+		options.alwaysaccept = options.alwaysaccept || 1
+		this.getActionSlug(profile, {
+			version: 'UAPI', module: 'Email', func: 'add_forwarder'
 		}, (err, action) => {
 			this.call(profile, {
 				params: options,
