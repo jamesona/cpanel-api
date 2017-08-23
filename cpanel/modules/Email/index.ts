@@ -48,7 +48,7 @@ export class Email extends cPanelModule implements Email {
 	}
 
 	add_forwarder(profile: Profile, options, callback: Callback): void {
-		options.alwaysaccept = options.alwaysaccept || 1
+		if (!options.fwdopt) options.fwdopt = 'fwd'
 		this.getActionSlug(profile, {
 			version: 'UAPI', module: 'Email', func: 'add_forwarder'
 		}, (err, action) => {
