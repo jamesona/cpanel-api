@@ -1,6 +1,6 @@
 import * as request from 'request'
 import * as qs from 'qs'
-import { Profile } from '../../cpanel'
+import { Profile } from '../'
 
 export { Profile as Profile }
 export type Callback = (err, res) => void
