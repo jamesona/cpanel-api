@@ -2,7 +2,7 @@ import { Profile } from './profile'
 import * as Modules from './modules'
 import { cPanelModule } from './modules/abstract'
 
-export default class cPanel {
+export class cPanel {
 	private modules: {[index: string]: any} = Modules
 	constructor(private profile: Profile){}
 

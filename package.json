@@ -4,7 +4,7 @@
   "main": "./js/index.js",
   "types": "./js/index.d.ts",
   "private": false,
-  "version": "0.2.1-alpha",
+  "version": "0.2.2-alpha",
   "dependencies": {
     "typescript": ">= 2.3",
     "request": "latest",
