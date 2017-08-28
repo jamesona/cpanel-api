@@ -1,6 +1,8 @@
 {
   "name": "cpanel-api",
   "description": "A Node.js client for cPanel",
+  "url": "https://github.com/jamesona/cpanel-api",
+  "email": "npm@jamesonaranda.com",
   "main": "./js/index.js",
   "types": "./js/index.d.ts",
   "private": false,
