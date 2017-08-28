@@ -1,15 +1,8 @@
+import { Profile } from './profile'
 import * as Modules from './modules'
 import { cPanelModule } from './modules/abstract'
 
-export interface Profile {
-	host: string
-	user: string
-	pass: string
-	primary?: string
-	root?: Profile
-}
-
-export class cPanel {
+export default class cPanel {
 	private modules: {[index: string]: any} = Modules
 	constructor(private profile: Profile){}
 
